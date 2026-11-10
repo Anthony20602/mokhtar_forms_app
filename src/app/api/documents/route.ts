@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { createDocument, listDocuments } from "@/lib/documents";
-import { getForm } from "@/lib/forms/registry";
-import { AppError, route } from "@/lib/http";
-import { documentCreateSchema, listQuerySchema } from "@/lib/validation";
+import { createDocument, listDocuments } from "@/backend/services/documents";
+import { AppError, route } from "@/backend/api/http";
+import { documentCreateSchema, listQuerySchema } from "@/backend/api/validation";
+import { getForm } from "@/shared/forms/registry";
 
 const filterSchema = listQuerySchema.extend({
   personId: z.coerce.number().int().positive().optional(),

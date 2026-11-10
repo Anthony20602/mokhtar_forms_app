@@ -6,8 +6,8 @@ import {
   checkPassword,
   createSessionToken,
   sessionMaxAge,
-} from "@/lib/auth";
-import { AppError, route } from "@/lib/http";
+} from "@/backend/auth/auth";
+import { AppError, route } from "@/backend/api/http";
 
 export const POST = route(async (req) => {
   const { password } = z.object({ password: z.string().max(200) }).parse(await req.json());

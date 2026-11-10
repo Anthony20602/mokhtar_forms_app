@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { SESSION_COOKIE, authEnabled, verifyPrintToken, verifySessionToken } from "@/lib/auth";
+import { SESSION_COOKIE, authEnabled, verifyPrintToken, verifySessionToken } from "@/backend/auth/auth";
 
 // Password gate (only active when APP_PASSWORD is set).
 export function proxy(request: NextRequest) {

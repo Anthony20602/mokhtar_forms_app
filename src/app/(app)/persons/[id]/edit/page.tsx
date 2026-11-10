@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PersonForm } from "@/components/PersonForm";
-import { Notice, PageHeader } from "@/components/ui";
-import { load } from "@/lib/load";
-import { getPerson, getReligionOptions } from "@/lib/persons";
+import { PersonForm } from "@/frontend/components/persons/PersonForm";
+import { Notice, PageHeader } from "@/frontend/components/ui/ui";
+import { load } from "@/backend/database/load";
+import { getPerson, getReligionOptions } from "@/backend/services/persons";
 
 export const metadata: Metadata = { title: "تعديل بيانات" };
 

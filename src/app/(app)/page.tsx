@@ -1,11 +1,12 @@
-import { FileText, Search, UserPlus, Users } from "lucide-react";
+import { FileText, UserPlus, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { DocumentList } from "@/components/DocumentList";
-import { ButtonLink, Card, Notice } from "@/components/ui";
-import { listDocuments } from "@/lib/documents";
-import { load } from "@/lib/load";
-import { getStats } from "@/lib/persons";
+import { DocumentList } from "@/frontend/components/documents/DocumentList";
+import { PersonCombobox } from "@/frontend/components/persons/PersonCombobox";
+import { ButtonLink, Card, Notice } from "@/frontend/components/ui/ui";
+import { listDocuments } from "@/backend/services/documents";
+import { load } from "@/backend/database/load";
+import { getStats } from "@/backend/services/persons";
 
 export default async function HomePage() {
   const { data, error } = await load(async () => {
@@ -23,26 +24,9 @@ export default async function HomePage() {
           <div className="min-w-0 flex-1">
             <h1 className="text-3xl font-bold">معاملات المختار</h1>
             <p className="mt-1 text-white/80">ابحث عن صاحب العلاقة ثم اختر المعاملة المطلوبة</p>
-            <form action="/persons" className="mt-5 flex gap-2">
-              <label className="relative min-w-0 flex-1">
-                <span className="sr-only">بحث بالاسم أو الرقم</span>
-                <Search className="pointer-events-none absolute start-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" aria-hidden />
-                <input
-                  name="q"
-                  type="search"
-                  autoFocus
-                  autoComplete="off"
-                  placeholder="الاسم، الشهرة، اسم الأب أو رقم السجل"
-                  className="w-full rounded-xl border-0 bg-white py-3 ps-11 pe-4 text-base text-slate-900 shadow-sm outline-none placeholder:text-slate-400 focus:ring-4 focus:ring-white/30"
-                />
-              </label>
-              <button
-                type="submit"
-                className="shrink-0 rounded-xl bg-white px-5 py-3 text-base font-bold text-brand-800 shadow-sm hover:bg-brand-50"
-              >
-                بحث
-              </button>
-            </form>
+            <div className="mt-5">
+              <PersonCombobox autoFocus />
+            </div>
           </div>
         </div>
       </section>

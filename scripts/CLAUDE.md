@@ -5,6 +5,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #181 | 2:03 PM | ○ | Dev PostgreSQL confirmed running on 5433; port 3000 occupied while the configured web port 3100 is free | ~281 |
 | #133 | 10:23 AM | ● | Dev database startup still blocked: embedded PostgreSQL binaries missing from node_modules, so the data import could not reach the database | ~500 |
 | #132 | 10:22 AM | ↻ | dev-db.mjs rewritten to drive PostgreSQL through pg_ctl and initdb with start, stop, and status commands | ~542 |
 | #131 | " | ○ | Root cause of dev database start failure: PostgreSQL refuses to run under an administrator account on Windows | ~388 |

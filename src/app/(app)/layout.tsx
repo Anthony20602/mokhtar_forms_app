@@ -1,5 +1,5 @@
-import { AppNav } from "@/components/AppNav";
-import { authEnabled } from "@/lib/auth";
+import { AppNav } from "@/frontend/components/layout/AppNav";
+import { authEnabled } from "@/backend/auth/auth";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (

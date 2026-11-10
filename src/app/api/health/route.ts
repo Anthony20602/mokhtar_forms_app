@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { describeDbError, queryOne } from "@/lib/db";
+import { describeDbError, queryOne } from "@/backend/database/db";
 
 // Liveness + database check, used by the Settings page and by start-up scripts.
 export async function GET() {

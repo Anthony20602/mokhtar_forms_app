@@ -1,6 +1,6 @@
-import { notFound, parseId, route } from "@/lib/http";
-import { deletePerson, getPerson, updatePerson } from "@/lib/persons";
-import { personInputSchema } from "@/lib/validation";
+import { notFound, parseId, route } from "@/backend/api/http";
+import { deletePerson, getPerson, updatePerson } from "@/backend/services/persons";
+import { personInputSchema } from "@/backend/api/validation";
 
 type Ctx = RouteContext<"/api/persons/[id]">;
 

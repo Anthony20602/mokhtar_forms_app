@@ -1,6 +1,6 @@
-import { deleteDocument, getDocument, updateDocument } from "@/lib/documents";
-import { notFound, parseId, route } from "@/lib/http";
-import { documentUpdateSchema } from "@/lib/validation";
+import { deleteDocument, getDocument, updateDocument } from "@/backend/services/documents";
+import { notFound, parseId, route } from "@/backend/api/http";
+import { documentUpdateSchema } from "@/backend/api/validation";
 
 type Ctx = RouteContext<"/api/documents/[id]">;
 
