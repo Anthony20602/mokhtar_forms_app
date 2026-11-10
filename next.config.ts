@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  // Native / binary-carrying packages must be loaded with Node's own require.
+  serverExternalPackages: ["pg", "pdf-to-printer"],
+  // Lets phones and other PCs on the office network open the dev server too.
+  allowedDevOrigins: ["192.168.*.*", "10.*.*.*", "172.*.*.*", "*.local"],
   turbopack: {
     rules: {
       "*.css": {
