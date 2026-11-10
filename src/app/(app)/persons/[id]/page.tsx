@@ -2,14 +2,14 @@ import { ArrowRight, Pencil, UserPlus } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { DeleteButton } from "@/components/DeleteButton";
-import { DocumentList } from "@/components/DocumentList";
-import { FormIcon } from "@/components/FormIcon";
-import { ButtonLink, Card, Notice } from "@/components/ui";
-import { listDocuments } from "@/lib/documents";
-import { FORMS } from "@/lib/forms/registry";
-import { load } from "@/lib/load";
-import { getFamily, getPerson } from "@/lib/persons";
+import { DeleteButton } from "@/frontend/components/ui/DeleteButton";
+import { DocumentList } from "@/frontend/components/documents/DocumentList";
+import { FormIcon } from "@/frontend/components/ui/FormIcon";
+import { ButtonLink, Card, Notice } from "@/frontend/components/ui/ui";
+import { listDocuments } from "@/backend/services/documents";
+import { FORMS } from "@/shared/forms/registry";
+import { load } from "@/backend/database/load";
+import { getFamily, getPerson } from "@/backend/services/persons";
 
 export const metadata: Metadata = { title: "بيانات الشخص" };
 

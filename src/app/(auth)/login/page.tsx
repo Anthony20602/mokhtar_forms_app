@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { LoginForm } from "@/components/LoginForm";
+import { LoginForm } from "@/frontend/components/auth/LoginForm";
+import { firstParam } from "@/shared/params";
 
 export const metadata: Metadata = { title: "تسجيل الدخول" };
 
 export default async function LoginPage(props: PageProps<"/login">) {
   const params = await props.searchParams;
-  const raw = Array.isArray(params.next) ? params.next[0] : params.next;
+  const raw = firstParam(params.next);
   // Only ever return to a path inside this app.
-  const next = raw && raw.startsWith("/") && !raw.startsWith("//") ? raw : "/";
+  const next = raw.startsWith("/") && !raw.startsWith("//") ? raw : "/";
 
   return (
     <main className="grid flex-1 place-items-center bg-gradient-to-bl from-brand-700 to-brand-800 p-4">

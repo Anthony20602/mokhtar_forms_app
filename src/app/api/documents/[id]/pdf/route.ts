@@ -1,7 +1,7 @@
-import { getDocument } from "@/lib/documents";
-import { formTitle } from "@/lib/forms/registry";
-import { notFound, parseId, route } from "@/lib/http";
-import { renderDocumentPdf } from "@/lib/printing";
+import { getDocument } from "@/backend/services/documents";
+import { notFound, parseId, route, serverPort } from "@/backend/api/http";
+import { renderDocumentPdf } from "@/backend/services/printing";
+import { formTitle } from "@/shared/forms/registry";
 
 type Ctx = RouteContext<"/api/documents/[id]/pdf">;
 
@@ -12,7 +12,7 @@ export const GET = route<Ctx>(async (req, ctx) => {
   const doc = await getDocument(id);
   if (!doc) throw notFound("المستند");
 
-  const pdf = await renderDocumentPdf(id, req.nextUrl.port || process.env.PORT || "3000");
+  const pdf = await renderDocumentPdf(id, serverPort(req));
   const name = `${formTitle(doc.formType)} - ${doc.personName || doc.id} - ${doc.serialNo}.pdf`;
   const disposition = req.nextUrl.searchParams.has("download") ? "attachment" : "inline";
   return new Response(new Uint8Array(pdf), {

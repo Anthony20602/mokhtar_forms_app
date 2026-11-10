@@ -1,11 +1,12 @@
 import { Search } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DocumentList } from "@/components/DocumentList";
-import { Button, Card, EmptyState, Notice, PageHeader, buttonClass } from "@/components/ui";
-import { listDocuments } from "@/lib/documents";
-import { FORMS } from "@/lib/forms";
-import { load } from "@/lib/load";
+import { DocumentList } from "@/frontend/components/documents/DocumentList";
+import { Button, Card, EmptyState, Notice, PageHeader, buttonClass } from "@/frontend/components/ui/ui";
+import { listDocuments } from "@/backend/services/documents";
+import { load } from "@/backend/database/load";
+import { FORMS } from "@/shared/forms";
+import { firstParam } from "@/shared/params";
 
 export const metadata: Metadata = { title: "المستندات" };
 
@@ -13,10 +14,9 @@ const PAGE_SIZE = 40;
 
 export default async function DocumentsPage(props: PageProps<"/documents">) {
   const params = await props.searchParams;
-  const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? "";
-  const q = one(params.q);
-  const formType = one(params.form);
-  const page = Math.max(1, Number(one(params.page)) || 1);
+  const q = firstParam(params.q);
+  const formType = firstParam(params.form);
+  const page = Math.max(1, Number(firstParam(params.page)) || 1);
 
   const { data, error } = await load(() =>
     listDocuments({ q, formType: formType || undefined, limit: PAGE_SIZE, offset: (page - 1) * PAGE_SIZE }),

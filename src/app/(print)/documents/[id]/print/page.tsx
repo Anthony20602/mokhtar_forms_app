@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PrintToolbar } from "@/components/PrintToolbar";
-import { DocumentSheet } from "@/components/sheets/DocumentSheet";
-import { ScaledSheet } from "@/components/sheets/ScaledSheet";
-import { Notice } from "@/components/ui";
-import { getDocument } from "@/lib/documents";
-import { getForm } from "@/lib/forms";
-import { load } from "@/lib/load";
-import { getSettings } from "@/lib/settings";
+import { PrintToolbar } from "@/frontend/components/documents/PrintToolbar";
+import { DocumentSheet } from "@/frontend/components/sheets/DocumentSheet";
+import { ScaledSheet } from "@/frontend/components/sheets/ScaledSheet";
+import { Notice } from "@/frontend/components/ui/ui";
+import { getDocument } from "@/backend/services/documents";
+import { getForm } from "@/shared/forms";
+import { load } from "@/backend/database/load";
+import { getSettings } from "@/backend/services/settings";
 
 export const metadata: Metadata = { title: "طباعة" };
 

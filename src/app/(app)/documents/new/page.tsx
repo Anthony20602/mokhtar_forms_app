@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { DocumentEditor } from "@/components/DocumentEditor";
-import { Notice } from "@/components/ui";
-import { fullName } from "@/lib/arabic";
-import { latestDocumentFor } from "@/lib/documents";
-import { getForm } from "@/lib/forms";
-import { buildInitialData } from "@/lib/forms/prefill";
-import { load } from "@/lib/load";
-import { getPerson } from "@/lib/persons";
-import { getSettings } from "@/lib/settings";
+import { DocumentEditor } from "@/frontend/components/documents/DocumentEditor";
+import { Notice } from "@/frontend/components/ui/ui";
+import { latestDocumentFor } from "@/backend/services/documents";
+import { load } from "@/backend/database/load";
+import { getPerson } from "@/backend/services/persons";
+import { getSettings } from "@/backend/services/settings";
+import { fullName } from "@/shared/arabic";
+import { getForm } from "@/shared/forms";
+import { buildInitialData } from "@/shared/forms/prefill";
+import { firstParam } from "@/shared/params";
 
 export const metadata: Metadata = { title: "مستند جديد" };
 
 // /documents/new?form=residence&person=123  (person is optional: blank form)
 export default async function NewDocumentPage(props: PageProps<"/documents/new">) {
   const params = await props.searchParams;
-  const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
-  const form = getForm(one(params.form));
+  const form = getForm(firstParam(params.form));
   if (!form) notFound();
-  const personId = Number(one(params.person));
+  const personId = Number(firstParam(params.person));
 
   const { data, error } = await load(async () => {
     const [settings, person] = await Promise.all([

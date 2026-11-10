@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Card, Notice, PageHeader } from "@/components/ui";
-import { load } from "@/lib/load";
-import { getStats } from "@/lib/persons";
+import { Card, Notice, PageHeader } from "@/frontend/components/ui/ui";
+import { load } from "@/backend/database/load";
+import { getStats } from "@/backend/services/persons";
 
 export const metadata: Metadata = { title: "إحصاءات" };
 

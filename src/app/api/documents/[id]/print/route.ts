@@ -1,8 +1,8 @@
-import { getDocument, markPrinted } from "@/lib/documents";
-import { notFound, parseId, route } from "@/lib/http";
-import { printPdf, renderDocumentPdf } from "@/lib/printing";
-import { getSettings } from "@/lib/settings";
-import { printRequestSchema } from "@/lib/validation";
+import { getDocument, markPrinted } from "@/backend/services/documents";
+import { notFound, parseId, route, serverPort } from "@/backend/api/http";
+import { printPdf, renderDocumentPdf } from "@/backend/services/printing";
+import { getSettings } from "@/backend/services/settings";
+import { printRequestSchema } from "@/backend/api/validation";
 
 type Ctx = RouteContext<"/api/documents/[id]/print">;
 
@@ -15,7 +15,7 @@ export const POST = route<Ctx>(async (req, ctx) => {
 
   if (body.mode === "server") {
     const printer = body.printer ?? (await getSettings()).defaultPrinter;
-    const pdf = await renderDocumentPdf(id, req.nextUrl.port || process.env.PORT || "3000");
+    const pdf = await renderDocumentPdf(id, serverPort(req));
     await printPdf(pdf, { printer: printer || undefined, copies: body.copies });
   }
   await markPrinted(id, body.copies);

@@ -1,12 +1,12 @@
 import os from "node:os";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { SettingsForm } from "@/components/SettingsForm";
-import { Card, Notice, PageHeader } from "@/components/ui";
-import { authEnabled } from "@/lib/auth";
-import { queryOne } from "@/lib/db";
-import { load } from "@/lib/load";
-import { getSettings } from "@/lib/settings";
+import { SettingsForm } from "@/frontend/components/settings/SettingsForm";
+import { Card, Notice, PageHeader } from "@/frontend/components/ui/ui";
+import { authEnabled } from "@/backend/auth/auth";
+import { queryOne } from "@/backend/database/db";
+import { load } from "@/backend/database/load";
+import { getSettings } from "@/backend/services/settings";
 
 export const metadata: Metadata = { title: "الإعدادات" };
 
